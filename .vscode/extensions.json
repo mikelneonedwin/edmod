@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "exodiusstudios.comment-anchors",
+        "dbaeumer.vscode-eslint",
+        "pkief.material-icon-theme",
+        "esbenp.prettier-vscode",
+        "yoavbls.pretty-ts-errors",
+        "bradlc.vscode-tailwindcss"
+    ]
+}
