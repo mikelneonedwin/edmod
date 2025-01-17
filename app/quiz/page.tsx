@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 // import { useRouter } from 'next/navigation'
 import { EnhancedQuizChat } from "@/components/enhanced-quiz-chat"
 import { Button } from "@/components/ui/button"

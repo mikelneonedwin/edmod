@@ -1,59 +1,59 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Timer, AlertCircle } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Timer, AlertCircle } from "lucide-react";
 
 interface Question {
-  id: number
-  text: string
-  options: string[]
-  correctAnswer: string
-  timeLimit: number
+  id: number;
+  text: string;
+  options: string[];
+  correctAnswer: string;
+  timeLimit: number;
 }
 
-export function QuizInterface({
-  mode,
-  initialQuestions,
-}: {
-  mode: 'survival' | 'number'
-  initialQuestions: Question[]
-}) {
-  const [questions, setQuestions] = useState<Question[]>(initialQuestions)
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [score, setScore] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(questions[0]?.timeLimit || 30)
-  const [gameOver, setGameOver] = useState(false)
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
+type props = {
+  mode: "survival" | "number";
+  initialQuestions: Question[];
+};
+
+export function QuizInterface({ initialQuestions }: props) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [questions, setQuestions] = useState<Question[]>(initialQuestions);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(questions[0]?.timeLimit || 30);
+  const [gameOver, setGameOver] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   useEffect(() => {
     if (timeLeft > 0 && !gameOver) {
       const timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1)
-      }, 1000)
-      return () => clearInterval(timer)
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+      return () => clearInterval(timer);
     } else if (timeLeft === 0 && !gameOver) {
-      setGameOver(true)
+      setGameOver(true);
     }
-  }, [timeLeft, gameOver])
+  }, [timeLeft, gameOver]);
 
   const handleAnswer = (answer: string) => {
-    setSelectedAnswer(answer)
-    const correct = answer === questions[currentQuestion].correctAnswer
+    setSelectedAnswer(answer);
+    const correct = answer === questions[currentQuestion].correctAnswer;
 
     if (correct) {
-      setScore((prev) => prev + 1)
+      setScore((prev) => prev + 1);
       if (currentQuestion + 1 < questions.length) {
-        setCurrentQuestion((prev) => prev + 1)
-        setTimeLeft(questions[currentQuestion + 1].timeLimit)
+        setCurrentQuestion((prev) => prev + 1);
+        setTimeLeft(questions[currentQuestion + 1].timeLimit);
       } else {
-        setGameOver(true)
+        setGameOver(true);
       }
     } else {
-      setGameOver(true)
+      setGameOver(true);
     }
-  }
+  };
 
   if (gameOver) {
     return (
@@ -62,21 +62,17 @@ export function QuizInterface({
           <AlertCircle className="mx-auto h-12 w-12 text-yellow-500" />
           <h2 className="text-2xl font-bold">Game Over!</h2>
           <p className="text-xl">Final Score: {score}</p>
-          <Button onClick={() => window.location.reload()}>
-            Try Again
-          </Button>
+          <Button onClick={() => window.location.reload()}>Try Again</Button>
         </div>
       </Card>
-    )
+    );
   }
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <div className="p-6 space-y-6">
         <div className="flex justify-between items-center">
-          <div className="text-sm font-medium">
-            Score: {score}
-          </div>
+          <div className="text-sm font-medium">Score: {score}</div>
           <div className="flex items-center gap-2 text-sm font-medium">
             <Timer className="h-4 w-4" />
             {timeLeft}s
@@ -101,6 +97,5 @@ export function QuizInterface({
         </div>
       </div>
     </Card>
-  )
+  );
 }
-

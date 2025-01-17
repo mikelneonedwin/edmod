@@ -14,7 +14,7 @@ export default function Home() {
           <Link className="text-sm font-medium text-white hover:underline underline-offset-4" href="/quiz">
             Play
           </Link>
-          <Link className="text-sm font-medium text-white hover:underline underline-offset-4" href="/leaderboard">
+          <Link className="text-sm font-medium text-white hover:underline underline-offset-4" href="/leaderboards">
             Leaderboard
           </Link>
           <Link className="text-sm font-medium text-white hover:underline underline-offset-4" href="/login">
@@ -52,7 +52,7 @@ export default function Home() {
                 <Timer className="h-8 w-8 text-white" />
                 <h3 className="text-xl font-bold text-white">Survival Mode</h3>
                 <p className="text-center text-gray-400">
-                  Answer as many questions as you can within the time limit. One wrong move and it's game over!
+                  Answer as many questions as you can within the time limit. One wrong move and it&apos;s game over!
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-4">
