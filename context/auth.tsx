@@ -1,6 +1,6 @@
 "use client";
 
-import { auth } from "@/lib/firebase";
+import { auth, InitializeClientAnalytics } from "@/lib/firebase";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import {
   createContext,
@@ -63,20 +63,13 @@ export const useUser = () => useContext(AuthContext).user;
  * </AuthProvider>
  */
 export function AuthProvider({ children }: { children: ReactNode }) {
-  // State to track whether the authentication state is loading.
   const [isLoading, setIsLoading] = useState(true);
-
-  // State to track if a user is authenticated.
   const [isUser, setIsUser] = useState(false);
-
-  // State representing the overall authentication state.
   const [state, setState] = useState<AuthContext["state"]>("loading");
-
-  // State to hold the current Firebase User object, or null if not authenticated.
   const [user, setUser] = useState<User | null>(null);
 
-  // Effect to initialize the Firebase authentication state listener.
   useEffect(() => {
+    InitializeClientAnalytics();
     return onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
