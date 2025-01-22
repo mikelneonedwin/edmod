@@ -6,6 +6,7 @@
 - Implement Server-only and client-only
 - Customize nexttoplaoder
 - Initialize redis
+- Middleware for route protection
 
 # NOTE
 

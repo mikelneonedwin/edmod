@@ -11,5 +11,5 @@ const app = initializeApp({
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 });
-getAnalytics(app);
+if (typeof window === "object" && window === globalThis) getAnalytics(app);
 export const auth = getAuth(app);

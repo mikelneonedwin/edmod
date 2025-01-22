@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Timer, AlertCircle } from "lucide-react";
+import { useRouter } from "nextjs-toploader/app"
 
 interface Question {
   id: number;
@@ -26,6 +27,7 @@ export function QuizInterface({ initialQuestions }: props) {
   const [timeLeft, setTimeLeft] = useState(questions[0]?.timeLimit || 30);
   const [gameOver, setGameOver] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const router = useRouter()
 
   useEffect(() => {
     if (timeLeft > 0 && !gameOver) {
@@ -62,7 +64,7 @@ export function QuizInterface({ initialQuestions }: props) {
           <AlertCircle className="mx-auto h-12 w-12 text-yellow-500" />
           <h2 className="text-2xl font-bold">Game Over!</h2>
           <p className="text-xl">Final Score: {score}</p>
-          <Button onClick={() => window.location.reload()}>Try Again</Button>
+          <Button onClick={() => router.refresh()}>Try Again</Button>
         </div>
       </Card>
     );
