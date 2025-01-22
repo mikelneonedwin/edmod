@@ -1,6 +1,6 @@
 "use client";
 
-import { auth, InitializeClientAnalytics } from "@/lib/firebase";
+import { auth, firebaseAnalytics } from "@/lib/firebase";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import {
   createContext,
@@ -69,7 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    InitializeClientAnalytics();
+    firebaseAnalytics();
     return onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);

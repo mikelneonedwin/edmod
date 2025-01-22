@@ -13,4 +13,4 @@ const app = initializeApp({
 });
 
 export const auth = getAuth(app);
-export const InitializeClientAnalytics = () => getAnalytics(app);
+export const firebaseAnalytics = () => getAnalytics(app);

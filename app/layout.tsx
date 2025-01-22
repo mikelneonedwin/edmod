@@ -1,6 +1,7 @@
 import { AuthProvider } from "@/context/auth";
 import { rollbarClientConfig } from "@/lib/rollbar";
 import { Provider as RollbarProvider } from "@rollbar/react";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
@@ -38,6 +39,7 @@ export default function RootLayout({
         <html lang="en">
           <body className={inter.className}>
             <NextTopLoader showSpinner={false} />
+            <Analytics />
             {children}
           </body>
         </html>
