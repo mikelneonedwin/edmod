@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   type AuthProvider,
 } from "firebase/auth";
+import { createUser } from "./user.server";
 
 export async function signIn(platform: "google" | "github") {
   let provider: AuthProvider;
@@ -23,5 +24,11 @@ export async function signIn(platform: "google" | "github") {
   }
 
   const { user } = await signInWithPopup(auth, provider);
-  console.log(user);
+
+  await createUser({
+    email: user.email!,
+    name: user.displayName!,
+    user_id: user.uid,
+    img: user.photoURL,
+  });
 }

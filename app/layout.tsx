@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
+import { Provider as RollbarProvider } from "@rollbar/react";
+import { rollbarClientConfig } from "@/lib/rollbar";
+import { AuthProvider } from "@/context/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,13 +32,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {/* <AuthProvider> */}
-        {children}
-        {/* </AuthProvider> */}
-        {/* <Analytics /> */}
-      </body>
-    </html>
+    <AuthProvider>
+      <RollbarProvider config={rollbarClientConfig}>
+        <html lang="en">
+          <body className={inter.className}>{children}</body>
+        </html>
+      </RollbarProvider>
+    </AuthProvider>
   );
 }

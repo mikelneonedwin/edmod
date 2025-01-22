@@ -1,9 +1,11 @@
-# TODO 
+# TODO
 
-- Setup husky
-- Rearrange package.json
-- Set up shadcn
-- Intergate Firebase
-- Integrate Firebase Admin
-- Setup PostgresDB on Neon
-- Link DB to Kysely
+- Setup auth
+- Init DB schema
+- User utilities with firebase (e.g. in middlware)
+- Implement Server-only and client-only
+- Initialize redis
+
+# NOTE
+
+- Use tokenization heavily

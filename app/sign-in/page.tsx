@@ -1,5 +1,6 @@
 "use client";
 
+import { Google } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -29,7 +30,7 @@ export default function LoginPage() {
               className="w-full"
               onClick={() => signIn("google")}
             >
-              {/* FIXME GOOGLE ICON */}
+              <Google />
               Continue with Google
             </Button>
             <Button
