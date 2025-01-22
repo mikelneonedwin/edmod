@@ -5,7 +5,7 @@ import {
   signInWithPopup,
   type AuthProvider,
 } from "firebase/auth";
-import { createUser } from "./user.server";
+import { signIn as serverSignIn } from "./user.server";
 
 export async function signIn(platform: "google" | "github") {
   let provider: AuthProvider;
@@ -25,7 +25,7 @@ export async function signIn(platform: "google" | "github") {
 
   const { user } = await signInWithPopup(auth, provider);
 
-  await createUser({
+  return await serverSignIn({
     email: user.email!,
     name: user.displayName!,
     user_id: user.uid,

@@ -1,9 +1,10 @@
-import { Inter } from "next/font/google";
-import type { Metadata } from "next";
-import "./globals.css";
-import { Provider as RollbarProvider } from "@rollbar/react";
-import { rollbarClientConfig } from "@/lib/rollbar";
 import { AuthProvider } from "@/context/auth";
+import { rollbarClientConfig } from "@/lib/rollbar";
+import { Provider as RollbarProvider } from "@rollbar/react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +36,10 @@ export default function RootLayout({
     <AuthProvider>
       <RollbarProvider config={rollbarClientConfig}>
         <html lang="en">
-          <body className={inter.className}>{children}</body>
+          <body className={inter.className}>
+            <NextTopLoader showSpinner={false} />
+            {children}
+          </body>
         </html>
       </RollbarProvider>
     </AuthProvider>

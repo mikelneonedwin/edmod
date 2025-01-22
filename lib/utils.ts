@@ -20,6 +20,13 @@ export async function validateInput<T>(
   }
 }
 
+
+// const pattern = /\(auth\/(.+)\)/i;
+// if (pattern.test(errorMsg)) {
+//   errorMsg = errorMsg.match(pattern)![1].replace(/-/g, " ");
+// }
+// return errorMsg[0].toUpperCase() + errorMsg.slice(1);
+
 export function getErrorMessage(error: unknown): string {
   if (typeof error === "string" && error) return error;
   if (error instanceof Error) return error.message;
